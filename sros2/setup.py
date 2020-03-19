@@ -68,6 +68,7 @@ enhance the security of ROS 2 deployments.""",
             'generate_artifacts = sros2.verb.generate_artifacts:GenerateArtifactsVerb',
             'generate_policy = sros2.verb.generate_policy:GeneratePolicyVerb',
             'list_keys = sros2.verb.list_keys:ListKeysVerb',
+            'sign_policy = sros2.verb.sign_policy:SignPolicyVerb',
         ],
     },
     package_data={

@@ -178,6 +178,15 @@ def create_keystore(keystore_path):
     print('cheers!')
     return True
 
+def sign_keystore_policy(keystore_path):
+    ca_key_path = os.path.join(keystore_path, 'ca.key.pem')
+    ca_cert_path = os.path.join(keystore_path, 'ca.cert.pem')
+    gov_path = os.path.join(keystore_path, 'governance.xml')
+    signed_gov_path = os.path.join(keystore_path, 'governance.p7s')
+    print('creating signed governance file: %s' % signed_gov_path)
+    _create_smime_signed_file(ca_cert_path, ca_key_path, gov_path, signed_gov_path)
+    
+
 
 def is_valid_keystore(path):
     return (
