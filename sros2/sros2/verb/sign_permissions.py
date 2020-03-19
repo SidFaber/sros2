@@ -12,16 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from sros2.api import sign_keystore_policy
+from sros2.api import sign_permission_file
 from sros2.verb import VerbExtension
 
 
-class SignPolicyVerb(VerbExtension):
-    """Sign the domain governance xml file."""
+class SignPermissionsVerb(VerbExtension):
+    """Sign the node permissions xml file."""
 
     def add_arguments(self, parser, cli_name):
         arg = parser.add_argument('ROOT', help='root path of keystore')
+        parser.add_argument('NAME', help='key name, aka ROS node name')
 
     def main(self, *, args):
-        success = sign_keystore_policy(args.ROOT)
+        success = sign_permission_file(args.ROOT, args.NAME)
         return 0 if success else 1

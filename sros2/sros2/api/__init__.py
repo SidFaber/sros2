@@ -186,6 +186,14 @@ def sign_keystore_policy(keystore_path):
     print('creating signed governance file: %s' % signed_gov_path)
     _create_smime_signed_file(ca_cert_path, ca_key_path, gov_path, signed_gov_path)
     
+def sign_permission_file (keystore_path, key_dir):
+    permissions_path = os.path.join(keystore_path, key_dir, 'permissions.xml')
+    signed_permissions_path = os.path.join(keystore_path, key_dir, 'permissions.p7s')
+    keystore_ca_key_path = os.path.join(keystore_path, 'ca.key.pem')
+    keystore_ca_cert_path = os.path.join(keystore_path, 'ca.cert.pem')
+    _create_smime_signed_file(
+        keystore_ca_cert_path, keystore_ca_key_path, permissions_path, signed_permissions_path)
+
 
 
 def is_valid_keystore(path):
